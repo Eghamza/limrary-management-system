@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% block content%}
+{%if user.is_authenticated %}
+
+
+<script>
+  $(document).ready(function () {
+    $('#ex').DataTable();
+  })
+
+
+</script>
+{% if user.is_superuser%}
+
+<div class=" container">
+  <h5>ADMIN - DASHBOARD</h5>
+  <h6 class="mt-2">National Library</h6>
+  <h4>Barrowed Books</h4>
+  <div class="">
+    <table id="ex" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Book name</th>
+          <th scope="col">Email</th>
+          <th style="color: blue;" scope="col">Return Date</th>
+          <th>EDIT</th>
+          <th>DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {%for book in books %}
+        <tr>
+          <td>{{book.id}}</td>
+          <td>{{book.book.name}}</td>
+          <td>{{book.student.email}}</td>
+          {% if book.end_date <= now %} <td style="color: red;">{{book.end_date}}</td>
+            {% else %}
+            <td style="color: green;">{{book.end_date}}</td>
+
+            {% endif%}
+            <td>
+              <a class=" " href="{% url 'edit' book.id %}">
+                <i class="bx bx-edit bx-sm"></i>
+              </a>
+            </td>
+            {%if user.is_superuser%}
+            <td>
+              <a class=" " href="{% url 'delete' book.id %}"><i class='bx bx-message-square-x'></i></a>
+            </td>
+            {%else%}
+            {% endif%}
+
+
+
+        </tr>
+
+        {%endfor%}
+
+
+
+      </tbody>
+    </table>
+    <h4 class="">All Books</h4>
+    <table id="example" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">name</th>
+          <th scope="col">auther</th>
+          <th scope="col">Avaliable</th>
+          <th scope="col">EDIT</th>
+          <th scope="col">DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {%for bk in bks %}
+        <tr>
+          <td>{{bk.id}}</td>
+          <td>{{bk.name}}</td>
+          <td>{{bk.auth}}</td>
+          {% if bk.quantity > 5%}
+          <td style="color: green;">{{'IN LIBRARY'}}</td>
+          {% else %}
+          <td style="color: red;">{{'OUT LIBRARY'}}</td>
+
+          {% endif%}
+          <td>
+            <a class=" " href="{%url 'edit_book' bk.id%}">
+              <i class="bx bx-edit bx-sm"></i>
+            </a>
+          </td>
+          <td>
+            <a class=" " href="{%url 'delete_book' bk.id%}"><i class='bx bx-message-square-x'></i></a>
+          </td>
+
+
+        </tr>
+
+        {%endfor%}
+
+
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- all users table -->
+<div class="container">
+  <div class="">
+    <table id="ex" class="table table-striped" style="width:100%">
+
+      <thead>
+        <h3>user</h3>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">USERNAME</th>
+          <th scope="col">EMAIL ADDRESS</th>
+          <th scope="col">FRIST NAME</th>
+          <th scope="col">LAST NAME</th>
+          <th scope="col">STAFF STATUS</th>
+          <th scope="col">EDIT</th>
+          <th scope="col">ADD</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        {%for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.first_name}}</td>
+          <td>{{user.last_name}}</td>
+          {% if user.is_active == False %}
+          <td style="color: red;"><i class='bx bx-x-circle'></i></td>
+          {% else %}
+          <td style="color: green;"><i class='bx bx-check-circle'></i></td>
+          {% endif%}
+          <td>
+            <a class=" " href="{% url 'edit_registration' user.id %}">
+              <i class="bx bx-edit bx-sm"></i>
+            </a>
+          </td>
+          <td>
+            <a class=" " href="{%url 'staff_register' %}"><i class='bx bx-plus-circle'></i></a>
+          </td>
+        </tr>
+
+        {%endfor%}
+
+
+
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+{% else %}
+<div class=" container">
+  <h6 class="mt-2">National Library</h6>
+
+
+  <div class="">
+    <table id="ex" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Book name</th>
+          <th scope="col">Email</th>
+          <th style="color: blue;" scope="col">Return Date</th>
+          <th>Access</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {%for book in books %}
+        <tr>
+          <td>{{book.id}}</td>
+          <td>{{book.book.name}}</td>
+          <td>{{book.student.email}}</td>
+          {% if book.end_date <= now %} <td style="color: red;">{{book.end_date}}</td>
+            {% else %}
+            <td style="color: green;">{{book.end_date}}</td>
+
+            {% endif%}
+            <td>
+              <a class=" " href="{% url 'edit' book.id %}">
+                <i class="bx bx-edit bx-sm"></i>
+              </a>
+            </td>
+            {%if user.is_superuser%}
+            <td>
+              <a class="btn bg-danger " href="{% url 'delete' book.id %}"><i class="bx bx-delete bx-sm"></i></a>
+            </td>
+            {%else%}
+            {% endif%}
+
+
+
+        </tr>
+
+        {%endfor%}
+
+
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{%endif%}
+{%else%}
+
+<!-- welcame page -->
+<div class=" d-flex justify-content-between align-content-xl-center">
+  <h1>WELCAME TO !</h1>
+</div>
+</div>
+{%endif%}
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+<div class="row">
+
+
+  <div class=" min-vh-100 align-items-center">
+
+    <!-- from registation -->
+
+
+    <div class=" d-flex justify-content-center">
+      <div class="">
+        <div class=" d-flex justify-content-center mb-3 ">
+          <h1 class="mt-lg-5">Membership</h1>
+        </div>
+
+        <form action="membership" method="POST">
+          {%csrf_token %}
+
+
+
+
+
+          <div class="form-outline mb-4">
+            <input type="text" list="user" required autocomplete="off" name="user" placeholder="Search email ..."
+              class="form-control" />
+            <datalist id="user">
+              {%for item in usrs %}
+              <option value="{{item.id}}">{{item.get_name}}</option>
+              {%endfor%}
+            </datalist>
+          </div>
+          <div class="row">
+            <div class="col-6">
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-outline mb-4">
+                <input type="datetime-local" name="start_date" required placeholder="taken date" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-outline mb-4">
+                <input type="datetime-local" name="end_date" placeholder="return date" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Email input -->
+
+          <!-- Password input -->
+
+          <!-- re-password -->
+          <div class="form-outline mb-4">
+            <input type="text" list="booklist" autocomplete="off" required name="book1" placeholder="books"
+              class="form-control" />
+            <datalist id="booklist">
+              {%for book in books %}
+              <option value="{{book.id}}">{{book.name}}</option>
+              {%endfor%}
+            </datalist>
+
+
+
+
+          </div>
+          <!-- 2 column grid layout for inline styling -->
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+
+            </div>
+
+            <div class="form-outline mb-4">
+              <!-- Simple link -->
+              <button type="submit" class="btn btn-primary d-flex justify-content-center">Member</button>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  config = {
+    enableTime: false,
+    dateFormat: "Y-m-d"
+  }
+  flatpickr("input[type=datetime-local]", config);
+
+</script>
+
+{% endblock %}

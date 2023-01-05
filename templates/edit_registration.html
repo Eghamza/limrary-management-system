@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="row">
+    <div class="col">
+        <div class=" min-vh-100 align-items-center">
+
+            <!-- from registation -->
+
+
+            <div class=" d-flex justify-content-center">
+                <div class="">
+                    <div class=" d-flex justify-content-center mb-3 ">
+                        <h1 class="mt-lg-5">Edit User</h1>
+                    </div>
+
+                    <form action="" method="POST">
+                        {%csrf_token %}
+                        <div>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="username" value="{{user.username}}" required
+                                    placeholder="username" class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="first_name" value="{{user.first_name}}" required
+                                        placeholder="first name" class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="last_name" value="{{user.last_name}}" required
+                                        placeholder="last name" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="email" name="email" value="{{user.email}}" required placeholder="Email"
+                                        class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password" placeholder="password"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="password" name="confimpassoword" placeholder="confirm password"
+                                class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+                                        <label class="label">Superuser</label>
+                                        <br>
+
+                                        <select class="select btn btn-secondary dropdown-toggle " name="superuser">
+                                            <option value="{{user.is_superuser}}">{{user.is_superuser}}</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+                                        <label class="label">Active</label>
+                                        <br>
+
+                                        <select class="select btn btn-secondary dropdown-toggle" name="active">
+                                            <option selected="{{user.is_active}}">{{user.is_active}}</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+                                        <label class="label">Saff</label>
+                                        <br>
+
+                                        <select class="select btn btn-secondary dropdown-toggle" name="staff">
+                                            <option selected value="{{user.is_staff}}">{{user.is_staff}}</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary ">Update</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+</form>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+
+</div>
+{% endblock %}

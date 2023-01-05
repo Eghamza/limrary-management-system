@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+<div class="row">
+    <div class="col">
+        <div class=" min-vh-100 align-items-center">
+
+            <!-- from registation -->
+
+
+            <div class=" d-flex justify-content-center">
+                <div class="">
+                    <div class=" d-flex justify-content-center mb-3 ">
+                        <h1 class="mt-lg-5">Registration</h1>
+                    </div>
+
+                    <form action="staff_register" method="POST">
+                        {%csrf_token %}
+                        <div>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="username" required placeholder="username"
+                                    class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="first_name" required placeholder="first name"
+                                        class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="last_name" required placeholder="last name"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="email" name="email" required placeholder="Email"
+                                        class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password" placeholder="password"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input type="password" name="confimpassoword" placeholder="confirm password"
+                                class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+
+                                        <select class="select btn btn-secondary dropdown-toggle " name="superuser">
+                                            <option value="1">is super user</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+
+                                        <select class="select btn btn-secondary dropdown-toggle" name="active">
+                                            <option>is active</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-outline mb-4">
+                                    <div class="col-md-6 mb-4">
+
+                                        <select class="select btn btn-secondary dropdown-toggle" name="staff">
+                                            <option value="1">is staff</option>
+                                            <option value="True">true</option>
+                                            <option value="False">false</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+
+                                            <!-- Simple link -->
+                                            <button type="submit" class="btn btn-primary ">Register</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+<!-- 2 column grid layout for inline styling -->
+<div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+        <!-- Checkbox -->
+
+    </div>
+
+
+</div>
+
+<!-- Submit button -->
+</form>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    config = {
+        enableTime: false,
+        dateFormat: "Y-m-d"
+    }
+    flatpickr("input[type=datetime-local]", config);
+
+</script>
+
+{% endblock %}
