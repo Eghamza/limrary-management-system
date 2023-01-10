@@ -269,19 +269,20 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Misc</div>
+                <div data-i18n="Misc">Groups</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="pages-misc-error.html" class="menu-link">
-                    <div data-i18n="Error">Error</div>
+                  <a href="{%url 'view_group' %}" class="menu-link">
+                    <div data-i18n="Error">Group</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="pages-misc-under-maintenance.html" class="menu-link">
-                    <div data-i18n="Under Maintenance">Under Maintenance</div>
+                  <a href="{%url 'create_group' %}" class="menu-link">
+                    <div data-i18n="Error">Create Group</div>
                   </a>
                 </li>
+                
               </ul>
             </li>
             
@@ -321,30 +322,41 @@
                
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="{% static '/assets/img/avatars/1.png '%}" alt class="w-px-40 h-auto rounded-circle" />
+                    
+                    <div class="avatar">
+                      <span class="fw-semibold d-block">{{user.username}}</span>
+                            {%  if user.is_authenticated and user.is_superuser or user.is_staff %}
+                            <small class="text-muted">Admin</small>
+                            {% else %}
+                            <small class="text-muted">Staff</small>
+                            {% endif %}
+                      <!-- <img src="{% static '/assets/img/avatars/1.png '%}" alt class="w-px-40 h-auto rounded-circle" /> -->
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
+                          <div class="flex-shrink-0 me-1">
+                            <!-- <div class="avatar avatar-online"> -->
                               <!-- <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> -->
-                            </div>
+                            <!-- </div> -->
                           </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                          <!-- <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">{{user.username}}</span>
+                            {%  if user.is_authenticated and user.is_superuser or user.is_staff %}
                             <small class="text-muted">Admin</small>
-                          </div>
+                            {% else %}
+                            <small class="text-muted">Staff</small>
+                            {% endif %}
+                          </div> -->
                         </div>
                       </a>
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
@@ -364,7 +376,7 @@
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                       </a>
-                    </li>
+                    </li> -->
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
@@ -419,12 +431,22 @@
       alertify.success('{{m}}');
     </script>
     {%endfor%}
+    {% for m in mss %}
+    <script>
+      alertify.set('notifier', 'position', 'top-right');
+      alertify.warning('{{m}}');
+    </script>
+    {%endfor%}
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"></script>
+
+      <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" async="">
+      </script>
+      
    
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{% static 'assets/vendor/libs/jquery/jquery.js '%}"></script>
@@ -433,6 +455,7 @@
     <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js '%}"></script>
 
     <script src="{% static 'assets/vendor/js/menu.js '%}"></script>
+    
     <!-- endbuild -->
 
     <!-- Vendors JS -->
@@ -440,7 +463,9 @@
 
     <!-- Main JS -->
     <script src="{% static 'assets/js/main.js '%}"></script>
-
+    <script src="{% static 'assets/js/change_Form.js '%}"></script>
+    <script id="django-admin-prepopulated-fields-constants" src="{% static 'assets/js/prepopulate_init.js '%}" data-prepopulated-fields="[]">
+    </script>
     <!-- Page JS -->
     <script src="{% static 'assets/js/dashboards-analytics.js '%}"></script>
 

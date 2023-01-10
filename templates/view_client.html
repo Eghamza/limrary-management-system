@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content%}
+{%if user.is_authenticated %}
+{% if user.is_superuser%}
+<h4 class="">students</h4>
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">full name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">EDIT</th>
+            <th scope="col">DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {%for studen in students %}
+        <tr>
+            <td>{{studen.get_name}}</td>
+            <td>{{studen.address}}</td>
+            <td>{{studen.phone}}</td>
+            <td>{{studen.email}}</td>
+            <td>
+                <a class=" " href="{%url 'edit_students' studen.id%}">
+                    <i class="bx bx-edit bx-sm"></i>
+                </a>
+            </td>
+            <td>
+                <a class="" href="{%url 'delete_student' studen.id %}"><i class='bx bx-message-square-x'></i></a>
+            </td>
+
+
+        </tr>
+
+        {%endfor%}
+
+
+
+    </tbody>
+</table>
+{%endif%}
+{%endif%}
+{%endblock%}

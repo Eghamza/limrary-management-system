@@ -3,109 +3,25 @@
 {%if user.is_authenticated %}
 
 
-<script>
-  $(document).ready(function () {
-    $('#ex').DataTable();
-  })
 
-
-</script>
 {% if user.is_superuser%}
 
 <div class=" container">
-  <h5>ADMIN - DASHBOARD</h5>
-  <h6 class="mt-2">National Library</h6>
-  <h4>Barrowed Books</h4>
-  <div class="">
-    <table id="ex" class="table table-striped" style="width:100%">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Book name</th>
-          <th scope="col">Email</th>
-          <th style="color: blue;" scope="col">Return Date</th>
-          <th>EDIT</th>
-          <th>DELETE</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="row">
+    <div class="col-6">
+      <h6 class="mt-2">National Library</h6>
+    </div>
+    <div class="col-6 d-flex ju">
+      <a href="{%url 'view_book' %}" class="btn-link p-2">book</a>
+      <a href="{%url 'view_client'%}" class="btn-link p-2">client</a>
+      <a href="{% url 'view_barrow' %}" class="btn-link p-2">barrow</a>
 
-        {%for book in books %}
-        <tr>
-          <td>{{book.id}}</td>
-          <td>{{book.book.name}}</td>
-          <td>{{book.student.email}}</td>
-          {% if book.end_date <= now %} <td style="color: red;">{{book.end_date}}</td>
-            {% else %}
-            <td style="color: green;">{{book.end_date}}</td>
+    </div>
 
-            {% endif%}
-            <td>
-              <a class=" " href="{% url 'edit' book.id %}">
-                <i class="bx bx-edit bx-sm"></i>
-              </a>
-            </td>
-            {%if user.is_superuser%}
-            <td>
-              <a class=" " href="{% url 'delete' book.id %}"><i class='bx bx-message-square-x'></i></a>
-            </td>
-            {%else%}
-            {% endif%}
-
-
-
-        </tr>
-
-        {%endfor%}
-
-
-
-      </tbody>
-    </table>
-    <h4 class="">All Books</h4>
-    <table id="example" class="table table-striped" style="width:100%">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">name</th>
-          <th scope="col">auther</th>
-          <th scope="col">Avaliable</th>
-          <th scope="col">EDIT</th>
-          <th scope="col">DELETE</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {%for bk in bks %}
-        <tr>
-          <td>{{bk.id}}</td>
-          <td>{{bk.name}}</td>
-          <td>{{bk.auth}}</td>
-          {% if bk.quantity > 5%}
-          <td style="color: green;">{{'IN LIBRARY'}}</td>
-          {% else %}
-          <td style="color: red;">{{'OUT LIBRARY'}}</td>
-
-          {% endif%}
-          <td>
-            <a class=" " href="{%url 'edit_book' bk.id%}">
-              <i class="bx bx-edit bx-sm"></i>
-            </a>
-          </td>
-          <td>
-            <a class=" " href="{%url 'delete_book' bk.id%}"><i class='bx bx-message-square-x'></i></a>
-          </td>
-
-
-        </tr>
-
-        {%endfor%}
-
-
-
-      </tbody>
-    </table>
   </div>
+  <h5>ADMIN - DASHBOARD</h5>
+
+
 
 </div>
 <!-- all users table -->
@@ -172,12 +88,19 @@
     <table id="ex" class="table table-striped" style="width:100%">
       <thead>
         <tr>
+          {% if perm.library_m_s.narrow_book.view_narrow_book%}
+          <th scope="col">id</th>
+          <th scope="col">Book name</th>
+          <th scope="col">Email</th>
+          <th style="color: blue;" scope="col">Return Date</th>
+          {%else%}
           <th scope="col">id</th>
           <th scope="col">Book name</th>
           <th scope="col">Email</th>
           <th style="color: blue;" scope="col">Return Date</th>
           <th>Access</th>
           <th>action</th>
+          {%endif%}
         </tr>
       </thead>
       <tbody>
@@ -219,11 +142,6 @@
 </div>
 {%endif%}
 {%else%}
-
-<!-- welcame page -->
-<div class=" d-flex justify-content-between align-content-xl-center">
-  <h1>WELCAME TO !</h1>
-</div>
 </div>
 {%endif%}
 

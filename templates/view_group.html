@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+{%if user.is_authenticated %}
+
+<table id="ex" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Group name</th>
+
+            <th>Access</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {%for item in groups %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>
+                <a class=" " href="{%url 'edit_group' item.id %}">
+                    <i class="bx bx-edit bx-sm"></i>
+                </a>
+            </td>
+            {%if user.is_superuser%}
+            <td>
+                <a class="" href="{%url 'delete_group' item.id %}"><i class="bx bx-delete bx-sm"></i></a>
+            </td>
+            {%else%}
+            {% endif%}
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{%endif%}
+{%endblock%}

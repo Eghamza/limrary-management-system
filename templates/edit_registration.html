@@ -104,40 +104,54 @@
 
                                     </div>
 
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary ">Update</button>
-
-                                    </div>
 
                                 </div>
                             </div>
+                            <div class="form-outline mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <label class="label">Group</label>
+                                    <br>
+
+                                    <select class="select btn btn-secondary dropdown-toggle" name="Group">
+                                        {%for groups in group%}
+                                        <option value="{{groups.id}}">{{groups.name}}</option>
+                                        {%endfor%}
+                                        {%for group in groups%}
+                                        {%if group != groups %}
+                                        <option value="{{group.id}}">{{group.name}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </select>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary ">Update</button>
+
+                        </div>
+                        <div class="row">
+                            <div></div>
+
                         </div>
                 </div>
             </div>
-
-
         </div>
-
-
-
     </div>
+    </p>
 
 </div>
 
-
 </div>
 
-</div>
 </form>
 
 </div>
 
-</div>
 
-</div>
-</div>
-
-
-
-</div>
 {% endblock %}

@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<div>
+    <h4 class=" m-3"> Greate Group </h4>
+    <hr>
+
+</div>
+<form action="create_group" method="post">
+    {% csrf_token %}
+
+    <div class="mt-5 mb-2">
+        <input class="form-control form-control" type="text" name="gname" required placeholder="Group Name">
+    </div>
+    <table id="ex" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th class="active" scope="col">NAME</th>
+                <th class="active" scope="col">ADD</th>
+                <th class="active" scope="col">UPDATE</th>
+                <th class="active" scope="col">DELETE</th>
+                <th class="active" scope="col">VIEW</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    Barrow Book
+
+
+                </td>
+
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="37">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="38">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="39">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="40">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Staff
+
+
+                </td>
+
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="25">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="26">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="27">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="28">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Book
+
+
+                </td>
+
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="29">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="30">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="31">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="32">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Client
+
+
+                </td>
+
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="33">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="34">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="35">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="37">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    User
+
+
+                </td>
+
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="13">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="14">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="15">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="check" id="inlineCheckbox1" value="16">
+
+                    </div>
+                </td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content%}
+{%if user.is_authenticated %}
+{% if user.is_superuser%}
+<h4>Barrowed Books</h4>
+<div class="">
+    <table id="ex" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Book name</th>
+                <th scope="col">Email</th>
+                <th style="color: blue;" scope="col">Return Date</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {%for book in books %}
+            <tr>
+                <td>{{book.id}}</td>
+                <td>{{book.book.name}}</td>
+                <td>{{book.student.email}}</td>
+                {% if book.end_date <= now %} <td style="color: red;">{{book.end_date}}</td>
+                    {% else %}
+                    <td style="color: green;">{{book.end_date}}</td>
+
+                    {% endif%}
+                    <td>
+                        <a class=" " href="{% url 'edit' book.id %}">
+                            <i class="bx bx-edit bx-sm"></i>
+                        </a>
+                    </td>
+                    {%if user.is_superuser%}
+                    <td>
+                        <a class=" " href="{% url 'delete' book.id %}"><i class='bx bx-message-square-x'></i></a>
+                    </td>
+                    {%else%}
+                    {% endif%}
+
+
+
+            </tr>
+
+            {%endfor%}
+
+
+
+        </tbody>
+    </table>
+
+</div>
+{%endif%}
+{%endif%}
+{%endblock%}
